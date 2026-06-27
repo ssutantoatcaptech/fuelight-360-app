@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@theme {
+  /* semantic.light.brand */
+  --color-brand-primary: #40B8C5;
+  --color-brand-primary-lit: #6AC9CE;
+  --color-brand-primary-lit-high: #93D8D8;
+  --color-brand-primary-dim: #2E93A4;
+  --color-brand-primary-dim-low: #0F3544;
+  --color-brand-secondary: #443F3F;
+  --color-brand-secondary-lit: #585250;
+  --color-brand-secondary-dim: #262322;
+  --color-brand-accent: #B59E74;
+  --color-brand-accent-lit: #C8B79E;
+  --color-brand-accent-dim: #776737;
+
+  /* semantic.light.background.container */
+  --color-container-flat: #FFFFFF;
+  --color-container-sunken1: #F6F5F3;
+  --color-container-sunken2: #EEEDE9;
+  --color-container-sunken3: #E5E3DF;
+  --color-container-sunken4: #D3D1CC;
+  --color-container-sunken5: #C1BEB8;
+  --color-container-sunken6: #AFABA4;
+  --color-container-contrast: #25272C;
+
+  /* semantic.light.background.sidebar */
+  --color-sidebar-default: #FFFFFF;
+  --color-sidebar-hover: #E5E3DF;
+  --color-sidebar-selected: #DA4C00;
+  --color-sidebar-submenu: #F6F5F3;
+
+  /* semantic.light.border.sidebar */
+  --color-sidebar-border: #EEEDE9;
+  --color-sidebar-border-selected: #00B0BD;
+
+  /* semantic.light.text.global */
+  --color-text-body: #262322;
+  --color-text-header: #443F3F;
+  --color-text-caption: #4D4846;
+  --color-text-disabled: #78716C;
+  --color-text-contrast: #E2E1DF;
+  --color-text-placeholder: #4D4846;
+
+  /* accent colors (from Figma primitives) */
+  --color-tccc-orange-600: #DA4C00;
+  --color-tccc-orange-400: #FC7244;
+  --color-tccc-red-500: #F40000;
+  --color-green-600: #0E9F6E;
+
+  /* typography.padding.container */
+  --spacing-container-h-sm: 8px;
+  --spacing-container-h-md: 16px;
+  --spacing-container-h-lg: 24px;
+  --spacing-container-h-xl: 32px;
+  --spacing-container-v-sm: 8px;
+  --spacing-container-v-md: 16px;
+  --spacing-container-v-lg: 24px;
+
+  /* typography.padding.sidebar */
+  --spacing-sidebar-h-sm: 6px;
+  --spacing-sidebar-h-md: 8px;
+  --spacing-sidebar-h-lg: 16px;
+  --spacing-sidebar-v-sm: 6px;
+  --spacing-sidebar-v-md: 8px;
+  --spacing-sidebar-v-lg: 16px;
+  --spacing-sidebar-v-xl: 24px;
+
+  /* typography.size.sidebar */
+  --size-sidebar-item: 40px;
+
+  /* typography.border-radius.sidebar */
+  --radius-sidebar: 8px;
+
+  /* font families */
+  --font-title: 'TCCC Unity', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+}
