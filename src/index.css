@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* semantic.light.brand */
+  /* Brand colors (constant across themes) */
   --color-brand-primary: #40B8C5;
   --color-brand-primary-lit: #6AC9CE;
   --color-brand-primary-lit-high: #93D8D8;
@@ -10,73 +10,241 @@
   --color-brand-secondary: #443F3F;
   --color-brand-secondary-lit: #585250;
   --color-brand-secondary-dim: #262322;
-  --color-brand-accent: #B59E74;
-  --color-brand-accent-lit: #C8B79E;
-  --color-brand-accent-dim: #776737;
 
-  /* semantic.light.background.container */
+  /* TCCC primitives */
+  --color-tccc-orange-600: #DA4C00;
+  --color-tccc-orange-400: #FC7244;
+  --color-tccc-red-500: #F40008;
+  --color-tccc-aqua-500: #6AC9CE;
+  --color-tccc-aqua-950: #0F3544;
+
+  /* Chart colors (theme-responsive) */
+  --color-chart-bar-investment: #FC7244;
+  --color-chart-bar-contribution: var(--color-tccc-aqua-500);
+  --color-chart-line-investment: #C48300;
+  --color-chart-line-contribution: #2E93A4;
+
+  /* Comparison chart bars (lighter fills) */
+  --color-chart-comparison-investment: #FAC596;
+  --color-chart-comparison-contribution: #93D8D8;
+
+  /* Effects */
+  --effect-tcccrainbowangled: linear-gradient(135deg, #F40008, #FFA000, #6ED578, #64BEC2);
+
+  /* Semantic status */
+  --color-success: #19B07A;
+  --color-error: #C10A00;
+
+  /* Chart */
+  --color-chart-bg: #FFFFFF;
+  --color-chart-bar-baseline: #E5E3DF;
+  --color-chart-bar-negative: #F40000;
+  --color-chart-divider: #C7C4C1;
+
+  /* Light mode containers */
   --color-container-flat: #FFFFFF;
-  --color-container-sunken1: #F6F5F3;
-  --color-container-sunken2: #EEEDE9;
+  --color-container-sunken1: #F7F8F8;
+  --color-container-sunken2: #EDEEF1;
   --color-container-sunken3: #E5E3DF;
-  --color-container-sunken4: #D3D1CC;
+  --color-container-sunken4: #EDEEF1;
   --color-container-sunken5: #C1BEB8;
-  --color-container-sunken6: #AFABA4;
+  --color-container-sunken6: #F8F7F5;
   --color-container-contrast: #25272C;
+  --color-whitesmoke-100: #F8F7F5;
+  --color-darkslategray-100: #443F3F;
 
-  /* semantic.light.background.sidebar */
-  --color-sidebar-default: #FFFFFF;
-  --color-sidebar-hover: #E5E3DF;
-  --color-sidebar-selected: #DA4C00;
-  --color-sidebar-submenu: #F6F5F3;
-
-  /* semantic.light.border.sidebar */
-  --color-sidebar-border: #EEEDE9;
-  --color-sidebar-border-selected: #00B0BD;
-
-  /* semantic.light.text.global */
-  --color-text-body: #262322;
+  /* Light mode text */
+  --color-text-body: #443F3F;
   --color-text-header: #443F3F;
   --color-text-caption: #4D4846;
   --color-text-disabled: #78716C;
   --color-text-contrast: #E2E1DF;
-  --color-text-placeholder: #4D4846;
+  --color-text-tab-selected: #25272C;
+  --color-text-tab-default: #443F3F;
 
-  /* accent colors (from Figma primitives) */
-  --color-tccc-orange-600: #DA4C00;
-  --color-tccc-orange-400: #FC7244;
-  --color-tccc-red-500: #F40000;
-  --color-green-600: #0E9F6E;
+  /* Sidebar (theme-responsive) */
+  --color-sidebar-bg: #FFFFFF;
+  --color-sidebar-text: #333333;
+  --color-sidebar-text-selected: #FFFFFF;
+  --color-sidebar-item-selected: #DA4C00;
+  --color-sidebar-border: #D1D1D1;
+  --color-sidebar-toggle-bg: #F6F5F3;
+  --color-sidebar-toggle-active: #FFFFFF;
+  --color-sidebar-notification: #DA4C00;
+  --color-sidebar-icon: #333333;
 
-  /* typography.padding.container */
-  --spacing-container-h-sm: 8px;
-  --spacing-container-h-md: 16px;
-  --spacing-container-h-lg: 24px;
-  --spacing-container-h-xl: 32px;
-  --spacing-container-v-sm: 8px;
-  --spacing-container-v-md: 16px;
-  --spacing-container-v-lg: 24px;
+  /* Tab active states */
+  --color-tab-active-text: #DA4C00;
+  --color-tab-active-border: #FC7244;
 
-  /* typography.padding.sidebar */
-  --spacing-sidebar-h-sm: 6px;
-  --spacing-sidebar-h-md: 8px;
-  --spacing-sidebar-h-lg: 16px;
-  --spacing-sidebar-v-sm: 6px;
-  --spacing-sidebar-v-md: 8px;
-  --spacing-sidebar-v-lg: 16px;
-  --spacing-sidebar-v-xl: 24px;
+  /* Button borders */
+  --color-button-inactive-border: #D1D1D1;
 
-  /* typography.size.sidebar */
+  /* Input */
+  --color-input-bg: #F7F8F8;
+  --color-input-border: #C7C4C1;
+
+  /* Table */
+  --color-table-surface: #FFFFFF;
+  --color-table-header: #443F3F;
+  --color-table-cell: #262322;
+  --color-table-border: #585250;
+  --color-table-row-raised: #EDEEF1;
+  --color-table-header-raised: #E8E6E3;
+  --color-table-header-raised-highest: #DDDBD8;
+  --color-table-cell-raised-high: #FFFFFF;
+  --color-table-cell-raised: #F7F8F8;
+
+  /* Button */
+  --color-button-accent-bg: #EDEEF1;
+  --color-button-accent-border: #F40008;
+  --color-button-accent-text: #585250;
+  --color-button-default-bg: #FFFFFF;
+  --color-button-default-text: #443F3F;
+  --color-button-secondary-text: #E2E1DF;
+
+  /* Spacing */
+  --spacing-0: 0px;
+  --spacing-0-5: 2px;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+  --spacing-32: 128px;
+
+  /* Sizing */
+  --size-sidebar-width: 320px;
   --size-sidebar-item: 40px;
+  --size-input-height: 36px;
+  --size-button-height: 36px;
+  --size-tab-height: 44px;
 
-  /* typography.border-radius.sidebar */
-  --radius-sidebar: 8px;
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
 
-  /* font families */
-  --font-title: 'TCCC Unity', sans-serif;
+  /* Font families */
+  --font-title: 'TCCC Unity', 'Avenir Next', sans-serif;
   --font-body: 'DM Sans', sans-serif;
 }
 
 body {
   font-family: var(--font-body);
+  margin: 0;
+}
+
+.gradient-border {
+  position: relative;
+  border: 1.5px solid transparent;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: -1.5px;
+  border-radius: 8px;
+  padding: 1.5px;
+  background: var(--effect-tcccrainbowangled);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Dark mode overrides */
+[data-theme="dark"] {
+  --color-container-flat: #000000;
+  --color-container-sunken1: #191919;
+  --color-container-sunken2: #212121;
+  --color-container-sunken3: #292929;
+  --color-container-sunken4: #313131;
+  --color-container-sunken5: #393939;
+  --color-container-sunken6: #101010;
+  --color-container-contrast: #E2E1DF;
+
+  --color-text-body: #C7C4C1;
+  --color-text-header: #E2E1DF;
+  --color-text-caption: #8E8781;
+  --color-text-disabled: #6D6561;
+  --color-text-contrast: #262322;
+  --color-text-tab-selected: #E2E1DF;
+  --color-text-tab-default: #8E8781;
+
+  --color-input-bg: #313131;
+  --color-input-border: #2D2D2D;
+
+  --color-table-surface: #212121;
+  --color-table-header: #E2E1DF;
+  --color-table-cell: #C7C4C1;
+  --color-table-border: #585250;
+  --color-table-row-raised: #212121;
+  --color-table-header-raised: #141a1a;
+  --color-table-header-raised-highest: #1e2727;
+  --color-table-cell-raised-high: #212121;
+  --color-table-cell-raised: #191919;
+
+  --color-tab-active-text: #FFFFFF;
+  --color-tab-active-border: #FFFFFF;
+
+  --color-button-accent-bg: #313131;
+  --color-button-accent-border: #F40008;
+  --color-button-accent-text: #E2E1DF;
+  --color-button-default-bg: #191919;
+  --color-button-default-text: #E2E1DF;
+  --color-button-inactive-border: #2D2D2D;
+
+  /* Chart dark overrides */
+  --color-chart-bg: #1A1A1A;
+  --color-chart-bar-baseline: #393939;
+  --color-chart-bar-negative: #F40000;
+  --color-chart-divider: #585250;
+  --color-chart-bar-investment: #776737;
+  --color-chart-bar-contribution: #144758;
+  --color-chart-line-investment: #9D854E;
+  --color-chart-line-contribution: #2E93A4;
+  --color-chart-comparison-investment: #776737;
+  --color-chart-comparison-contribution: #144758;
+
+  /* Sidebar dark overrides */
+  --color-sidebar-bg: #000000;
+  --color-sidebar-text: #8E8781;
+  --color-sidebar-text-selected: #E2E1DF;
+  --color-sidebar-item-selected: #212121;
+  --color-sidebar-border: #443F3F;
+  --color-sidebar-toggle-bg: #000000;
+  --color-sidebar-toggle-active: #313131;
+  --color-sidebar-icon: #8E8781;
+}
+
+/* Brand card scroll — hide scrollbar by default, show on hover overlay */
+.brand-card-scroll {
+  scrollbar-width: none;
+}
+.brand-card-scroll:hover {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-input-border) transparent;
+}
+.brand-card-scroll::-webkit-scrollbar {
+  height: 6px;
+  display: none;
+}
+.brand-card-scroll:hover::-webkit-scrollbar {
+  display: block;
+}
+.brand-card-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-input-border);
+  border-radius: 9999px;
+}
+.brand-card-scroll::-webkit-scrollbar-track {
+  background: transparent;
 }

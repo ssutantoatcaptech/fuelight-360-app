@@ -1,30 +1,40 @@
 ---
 name: build-component
-description: Extract component dimensions and semantic colors out of theme.tokens.json to construct layout modules
+description: Build layout modules using exact Figma variables and strict self-audit rules
 steps:
-  - Parse the semantic block for target background properties (e.g., semantic.light.background.container.flat)
-  - Interrogate typography properties for the specific module spacing bounds (e.g., typography.padding.container or typography.padding.input)
-  - Verify layout sizing parameters from the component height configurations (e.g., typography.size.input.height-md)
-  - Output clean React functional primitives wrapped in strict TypeScript contract interfaces
+  - Run mandatory UI self-audit — verify tokens before writing code
+  - Parse theme.tokens.json for brand accents (Red #DA4C00, Orange #FC7244)
+  - Match icon slots and bounding box dimensions exactly to spec
+  - Enforce 1.5px active line-weights, border-0 inactive states
+  - Output clean React functional primitives in strict TypeScript
 ---
 
 # Build Component Workflow
-Follow the token mapping boundaries of the Fuelight 360 Design System to construct pixel-perfect structural containers.
 
-### 1. Color Extraction Map
-Locate visual values by chaining properties down to their native primitive mapping:
-* Main Branding Accent: `semantic.light.brand.primary-main` -> maps to primitives `_TCCC Aqua/600` (`#40B8C5`)
-* Core Structural Gray Text: `semantic.light.brand.secondary-main` -> maps to primitives `gray-stone/900` (`#443F3F`)
-* Page Fill Containers: `semantic.light.background.container.flat` (`#FFFFFF`) or `sunken1` (`#F6F5F3`)
+Construct pixel-perfect structural containers using the Fuelight 360 token system.
 
-### 2. Spatial Grid Alignment
-* Component Layout Bounds: Read horizontal/vertical keys directly from `typography.padding.[component_name]` (e.g., `typography.padding.button.horizontal-md` = 12px).
-* Raw Spacing Grid: If building custom structural grid gaps, match the pixel values to the primitive index keys:
-  * `gap-1` -> 4px (Key `1`)
-  * `gap-2` -> 8px (Key `2`)
-  * `gap-3` -> 12px (Key `3`)
-  * `gap-4` -> 16px (Key `4`)
+## 1. Mandatory UI Self-Audit
 
-### 3. Structural Radius & Borders
-* Outer Card Modules: Sync border radius values with `primitive.scale.border-radius` variables (e.g., `rounded-xl` = 12px, `rounded-2xl` = 16px).
-* Interactive Borders: Input and Button strokes must leverage properties found under `typography.border-width.[component]`.
+- Audit proposed classes against existing design tokens before writing code.
+- Never invent padding, margins, sizes, colors, or properties not in specs.
+- If a conflict arises, flag it — don't guess.
+
+## 2. Color & State Matrix
+
+- **Active nav container & badges:** `#DA4C00` red fill, white text. No left border line.
+- **Inactive sidebar text:** Dark charcoal (`#333333`) on pure white (`#FFFFFF`) background.
+- **Theme toggles (Light/Dark/Auto):** `#F6F5F3` background, dark charcoal text/icons.
+- **Sidebar background (Light Mode):** Pure white `#FFFFFF` exclusively.
+
+## 3. Iconography & Bounding Boxes
+
+- Match exact Figma bounding box dimensions for all icon wrappers.
+- Never downscale or guess fallback sizes for missing vectors.
+- Build the exact layout slot wrapper to preserve alignment if SVG is missing.
+
+## 4. Borders, Radius & Line-Weights
+
+- **Structural panels:** Square-edged (`rounded-none`). No rounded corners on full-height side panels or split containers.
+- **Active controls:** `1.5px` border — `#FC7244` for tabs, gradient for button groups.
+- **Inactive controls:** `border-0` — completely stripped.
+- **Uniform corners:** All buttons in a control group share the same `rounded-[8px]`.

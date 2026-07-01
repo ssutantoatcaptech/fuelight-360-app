@@ -1,34 +1,35 @@
 const filters = [
-  { label: "GB", hasChevron: true },
-  { label: "£ GBP", hasChevron: true },
-  { label: "Market", hasChevron: true },
-  { label: "Jun 4, 2025 – Nov 4, 2025", hasChevron: false, hasCalendar: true },
-  { label: "All Brands", hasChevron: true },
+  { label: "GB" },
+  { label: "£ GBP" },
+  { label: "Market" },
+  { label: "Jun 4, 2025 - Nov 4, 2025", isDate: true },
+  { label: "All Brands" },
 ];
 
 export default function MetaFilterCapsuleRow() {
   return (
-    <div className="flex items-center gap-3 px-6 py-2">
-      {filters.map((f, i) => (
-        <button
-          key={i}
-          type="button"
-          className="flex items-center gap-1.5 rounded-full border border-[#393939] px-3 py-1.5 text-xs font-medium text-[#C7C4C1] transition-colors hover:border-[#6D6561]"
-        >
-          {f.label}
-          {f.hasChevron && (
-            <svg className="h-3 w-3 text-[#6D6561]" viewBox="0 0 12 12" fill="currentColor">
-              <path d="M3 5l3 3 3-3" />
-            </svg>
-          )}
-          {f.hasCalendar && (
-            <svg className="h-3 w-3 text-[#6D6561]" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.2">
-              <rect x="1" y="2" width="10" height="9" rx="1" />
-              <path d="M1 5h10M4 0.5v2M8 0.5v2" />
-            </svg>
-          )}
-        </button>
-      ))}
+    <div className="flex gap-[20px] items-center p-[8px] rounded-[10px] bg-container-flat w-full">
+      {/* Filter inputs */}
+      <div className="flex flex-1 gap-[8px] items-center min-w-0">
+        {filters.map((f, i) => (
+          <div key={i} className="flex flex-col gap-[8px] items-start shrink-0">
+            <div className="flex gap-[12px] items-center h-[36px] px-[12px] rounded-[8px] bg-input-bg border border-input-border">
+              <span className="text-[14px] leading-[1.6] text-text-header whitespace-nowrap overflow-hidden text-ellipsis">
+                {f.label}
+              </span>
+              <div className="flex items-center justify-center w-[8px] h-[20px] shrink-0">
+                <svg className={`${f.isDate ? "size-[13.5px]" : "size-[16.5px]"} text-text-caption`} viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      {/* Right spacer (184px empty container from Figma) */}
+      <div className="flex items-center self-stretch">
+        <div className="flex gap-[8px] items-start justify-end w-[184px] h-full shrink-0" />
+      </div>
     </div>
   );
 }
