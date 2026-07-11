@@ -1,0 +1,163 @@
+/* ─── Modal ─── */
+
+/* Overlay backdrop */
+.fl-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Modal container */
+.fl-modal {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  background: var(--color-modal-bg, #edeef1);
+  border: 0 solid var(--color-modal-border, #d8dbdf);
+  border-radius: var(--radius-modal, 16px);
+  box-shadow: 0 4px 6px -4px rgba(0, 0, 0, 0.1),
+              0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Header */
+.fl-modal__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: var(--spacing-modal-vertical, 16px) var(--spacing-modal-horizontal, 24px);
+  background: var(--color-modal-bg, #edeef1);
+  border-radius: var(--radius-modal, 16px) var(--radius-modal, 16px) 0 0;
+  overflow: hidden;
+}
+
+.fl-modal__header--center {
+  align-items: center;
+}
+
+/* Title row */
+.fl-modal__title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1, 4px);
+  padding-top: var(--spacing-2, 8px);
+  width: 100%;
+}
+
+.fl-modal__header--center .fl-modal__title-row {
+  justify-content: center;
+  gap: 8px;
+  padding-top: 0;
+}
+
+/* Title icon */
+.fl-modal__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.fl-modal__icon svg {
+  width: 19.5px;
+  height: 19.5px;
+}
+
+/* Title text */
+.fl-modal__title {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-xl, 20px);
+  font-weight: var(--font-weight-semibold, 600);
+  line-height: 1.6;
+  color: var(--color-modal-header-text, #443f3f);
+  white-space: nowrap;
+}
+
+/* Close button */
+.fl-modal__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.fl-modal__close svg {
+  width: 16.5px;
+  height: 16.5px;
+}
+
+/* Description text */
+.fl-modal__text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.fl-modal__description {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-body, 14px);
+  font-weight: var(--font-weight-normal, 400);
+  line-height: 1.6;
+  color: var(--color-modal-description-text, #262322);
+  width: 100%;
+}
+
+.fl-modal__header--center .fl-modal__description {
+  text-align: center;
+}
+
+/* Body / content area */
+.fl-modal__body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  width: 100%;
+}
+
+/* Footer */
+.fl-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0;
+  padding: var(--spacing-modal-vertical, 16px) var(--spacing-modal-horizontal, 24px);
+  background: var(--color-modal-bg, #edeef1);
+  border-top: 0 solid var(--color-modal-border, #d8dbdf);
+  border-radius: 0 0 var(--radius-modal, 16px) var(--radius-modal, 16px);
+  overflow: hidden;
+}
+
+.fl-modal__footer--center {
+  justify-content: center;
+}
+
+.fl-modal__footer--between {
+  justify-content: space-between;
+}
+
+/* Actions container inside footer */
+.fl-modal__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-4, 16px);
+}
+
+.fl-modal__footer--center .fl-modal__actions {
+  flex: 1;
+  gap: var(--spacing-4, 16px);
+}

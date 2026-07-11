@@ -1554,6 +1554,10 @@
   --color-chart-comparison-investment: #FAC596;
   --color-chart-comparison-contribution: #93D8D8;
   --effect-tcccrainbowangled: linear-gradient(135deg, #F40008, #FFA000, #6ED578, #64BEC2);
+  --color-rainbow-stop-1: #F40008;
+  --color-rainbow-stop-2: #FFA000;
+  --color-rainbow-stop-3: #6ED578;
+  --color-rainbow-stop-4: #64BEC2;
   --color-success: #19B07A;
   --color-error: #C10A00;
   --color-chart-bg: #FFFFFF;

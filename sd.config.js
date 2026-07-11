@@ -6,10 +6,10 @@ export default {
   platforms: {
     css: {
       transformGroup: transformGroups.css, // Auto-slugifies names safely
-      buildPath: 'project/tokens/',
+      buildPath: 'src/design-system/styles/',
       files: [
         {
-          destination: 'base.css',
+          destination: 'tokens.css',
           format: formats.cssVariables, // Outputs native :root definitions
           options: {
             outputReferences: true, // Retains pointer mappings without flattening

@@ -30,7 +30,11 @@
 - Build: `npm run build`
 
 ## 📦 5. Core Integration Libraries
-- **Design System Repository:** `git+https://github.com/ssutantoatcaptech/Fuelight-DS-Library.git`
+- **Design System:** Lives entirely within this repository at `src/design-system/`. No external packages or cross-repo linking required.
+  - **Component CSS:** `src/design-system/components/` — foundational UI class-based styles (`.fl-btn`, `.fl-card`, etc.)
+  - **Icons:** `src/design-system/icons/` — custom SVG icon library
+  - **Compiled Tokens:** `src/design-system/styles/tokens.css` — auto-generated from `theme.tokens.json` via `node build-token.js`
+  - **Entry point:** `src/design-system/index.css` — imported in `src/main.tsx`
 - **Icon Component:** `src/components/ui/Icon.tsx`
   - Usage: `<Icon name="settings" size={20} className="text-text-caption" />`
   - Rule: Do not swap out existing inline SVGs on stable views. Restrict component usage to fresh development or intentional layout refactors.

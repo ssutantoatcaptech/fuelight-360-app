@@ -1,32 +1,46 @@
-# React + TypeScript + Vite
+# Fuelight 360
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A high-density data analytics workspace for performance analysis, ledger grids, and budget allocation matrices.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Framework:** React 19, TypeScript, Vite
+- **Styling:** Tailwind CSS v4 with `@theme` blocks
+- **Tokens:** DTCG standard (`theme.tokens.json`)
 
-## React Compiler
+## Design System
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The design system lives entirely within this repository — no external packages or cross-repo linking required.
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```
+src/design-system/
+├── components/   # Foundational UI class-based CSS (.fl-btn, .fl-card, etc.)
+├── icons/        # Custom SVG icon library
+├── styles/       # Compiled token output (auto-generated)
+└── index.css     # Single entry point (imported in main.tsx)
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+### Token Pipeline
+
+Tokens are compiled from `theme.tokens.json` at the root:
+
+```bash
+node build-token.js    # Outputs src/design-system/styles/tokens.css
+```
+
+The Style Dictionary config (`sd.config.js`) can also be used for structured builds.
+
+## Commands
+
+```bash
+npm install       # Install dependencies
+npm run dev       # Start dev server
+npm run build     # Production build
+```
+
+## Architecture
+
+- `src/index.css` — Tailwind config, semantic aliases, dark mode overrides (DO NOT auto-generate into this file)
+- `src/design-system/` — Self-contained design system (tokens + components + icons)
+- `src/components/` — Application-specific view components
+- `.claude/blueprints/` — Layout definitions per view

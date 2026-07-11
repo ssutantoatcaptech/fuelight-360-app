@@ -111,9 +111,9 @@ ${cssVariables.join('\n')}
 }
 ${semanticSection}${utilitySection}`;
 
-const outputDir = './project/tokens';
+const outputDir = './src/design-system/styles';
 if (!fs.existsSync(outputDir)){
     fs.mkdirSync(outputDir, { recursive: true });
 }
-fs.writeFileSync(`${outputDir}/base.css`, outputCSS);
-console.log(` Done! Successfully compiled tokens to ${outputDir}/base.css`);
+fs.writeFileSync(`${outputDir}/tokens.css`, outputCSS);
+console.log(` Done! Successfully compiled tokens to ${outputDir}/tokens.css`);

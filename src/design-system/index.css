@@ -1,0 +1,3 @@
+/* Fuelight Design System — consolidated entry point */
+@import './styles/tokens.css';
+@import './components/index.css';

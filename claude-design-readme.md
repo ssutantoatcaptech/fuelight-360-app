@@ -1,6 +1,6 @@
 # ⚡ Fuelight 360 Design System (TCCC Analytics Workspace)
 
-Welcome to the Fuelight 360 Design System documentation. This framework serves as our single source of truth, anchoring the brand's Foundations, UI inventory, and layout parameters across our React 19 / Tailwind v4 production repo and this interactive prototyping canvas.
+Welcome to the Fuelight 360 Design System documentation. The design system now lives entirely within this single repository (`captechconsulting/Fuelight-360`) at `src/design-system/`. No external packages, cross-repo npm linking, or private registry installations are required. Tokens, component CSS, icons, and build scripts are all co-located here.
 
 ---
 
