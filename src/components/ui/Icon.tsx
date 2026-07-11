@@ -13,11 +13,15 @@ interface IconProps {
   name: string;
   size?: number;
   className?: string;
+  /** Paint the icon with an SVG gradient def (by id) instead of currentColor. */
+  gradientId?: string;
 }
 
-export default function Icon({ name, size = 20, className = "" }: IconProps) {
+export default function Icon({ name, size = 20, className = "", gradientId }: IconProps) {
   const svg = icons[name];
   if (!svg) return null;
+
+  const paint = gradientId ? `url(#${gradientId})` : "currentColor";
 
   return (
     <span
@@ -26,8 +30,8 @@ export default function Icon({ name, size = 20, className = "" }: IconProps) {
         display: "inline-flex",
         width: size,
         height: size,
-        "--fill-0": "currentColor",
-        "--stroke-0": "currentColor",
+        "--fill-0": paint,
+        "--stroke-0": paint,
       } as React.CSSProperties}
       dangerouslySetInnerHTML={{ __html: svg }}
     />

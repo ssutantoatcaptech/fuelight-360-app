@@ -30,6 +30,11 @@
 
   /* Effects */
   --effect-tcccrainbowangled: linear-gradient(135deg, #F40008, #FFA000, #6ED578, #64BEC2);
+  /* TCCCRainbowAngled gradient stops (for SVG fills that can't use the linear-gradient var) */
+  --color-rainbow-stop-1: #F40008;
+  --color-rainbow-stop-2: #FFA000;
+  --color-rainbow-stop-3: #6ED578;
+  --color-rainbow-stop-4: #64BEC2;
 
   /* Semantic status */
   --color-success: #19B07A;
@@ -247,4 +252,21 @@ body {
 }
 .brand-card-scroll::-webkit-scrollbar-track {
   background: transparent;
+}
+
+/* Subtle scrollbar — thin, muted, transparent track (used in the settings drawer) */
+.subtle-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-input-border) transparent;
+}
+.subtle-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.subtle-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.subtle-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-input-border);
+  border-radius: 9999px;
 }

@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Waterfall Chart — Token Test</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* ─── Resolved DTCG Tokens as CSS Variables ─── */
+    :root {
+      /* Dimensions (px) — scale: 2, xs=4, sm=8, md=16, lg=32, xl=64 */
+      --dimension-scale: 2;
+      --dimension-xs: 4px;
+      --dimension-sm: 8px;
+      --dimension-md: 16px;
+      --dimension-lg: 32px;
+      --dimension-xl: 64px;
+
+      /* Spacing */
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 16px;
+      --spacing-lg: 32px;
+      --spacing-xl: 64px;
+      --spacing-multi-value: 8px 64px;
+
+      /* Border Radius */
+      --borderRadius-sm: 4px;
+      --borderRadius-lg: 8px;
+      --borderRadius-xl: 16px;
+      --borderRadius-multi-value: 4px 8px;
+
+      /* Colors */
+      --colors-black: #000000;
+      --colors-white: #ffffff;
+      --colors-gray-100: #f7fafc;
+      --colors-gray-200: #edf2f7;
+      --colors-gray-300: #e2e8f0;
+      --colors-gray-400: #cbd5e0;
+      --colors-gray-500: #a0aec0;
+      --colors-gray-600: #718096;
+      --colors-gray-700: #4a5568;
+      --colors-gray-800: #2d3748;
+      --colors-gray-900: #1a202c;
+      --colors-red-100: #fff5f5;
+      --colors-red-200: #fed7d7;
+      --colors-red-300: #feb2b2;
+      --colors-red-400: #fc8181;
+      --colors-red-500: #f56565;
+      --colors-red-600: #e53e3e;
+      --colors-red-700: #c53030;
+      --colors-red-800: #9b2c2c;
+      --colors-red-900: #742a2a;
+      --colors-orange-100: #fffaf0;
+      --colors-orange-200: #feebc8;
+      --colors-orange-300: #fbd38d;
+      --colors-orange-400: #f6ad55;
+      --colors-orange-500: #ed8936;
+      --colors-orange-600: #dd6b20;
+      --colors-orange-700: #c05621;
+      --colors-orange-800: #9c4221;
+      --colors-orange-900: #7b341e;
+      --colors-yellow-100: #fffff0;
+      --colors-yellow-200: #fefcbf;
+      --colors-yellow-300: #faf089;
+      --colors-yellow-400: #f6e05e;
+      --colors-yellow-500: #ecc94b;
+      --colors-yellow-600: #d69e2e;
+      --colors-yellow-700: #b7791f;
+      --colors-yellow-800: #975a16;
+      --colors-yellow-900: #744210;
+      --colors-green-100: #f0fff4;
+      --colors-green-200: #c6f6d5;
+      --colors-green-300: #9ae6b4;
+      --colors-green-400: #68d391;
+      --colors-green-500: #48bb78;
+      --colors-green-600: #38a169;
+      --colors-green-700: #2f855a;
+      --colors-green-800: #276749;
+      --colors-green-900: #22543d;
+      --colors-teal-100: #e6fffa;
+      --colors-teal-200: #b2f5ea;
+      --colors-teal-300: #81e6d9;
+      --colors-teal-400: #4fd1c5;
+      --colors-teal-500: #38b2ac;
+      --colors-teal-600: #319795;
+      --colors-teal-700: #2c7a7b;
+      --colors-teal-800: #285e61;
+      --colors-teal-900: #234e52;
+      --colors-blue-100: #ebf8ff;
+      --colors-blue-200: #bee3f8;
+      --colors-blue-300: #90cdf4;
+      --colors-blue-400: #63b3ed;
+      --colors-blue-500: #4299e1;
+      --colors-blue-600: #3182ce;
+      --colors-blue-700: #2b6cb0;
+      --colors-blue-800: #2c5282;
+      --colors-blue-900: #2a4365;
+      --colors-indigo-100: #ebf4ff;
+      --colors-indigo-200: #c3dafe;
+      --colors-indigo-300: #a3bffa;
+      --colors-indigo-400: #7f9cf5;
+      --colors-indigo-500: #667eea;
+      --colors-indigo-600: #5a67d8;
+      --colors-indigo-700: #4c51bf;
+      --colors-indigo-800: #434190;
+      --colors-indigo-900: #3c366b;
+      --colors-purple-100: #faf5ff;
+      --colors-purple-200: #e9d8fd;
+      --colors-purple-300: #d6bcfa;
+      --colors-purple-400: #b794f4;
+      --colors-purple-500: #9f7aea;
+      --colors-purple-600: #805ad5;
+      --colors-purple-700: #6b46c1;
+      --colors-purple-800: #553c9a;
+      --colors-purple-900: #44337a;
+      --colors-pink-100: #fff5f7;
+      --colors-pink-200: #fed7e2;
+      --colors-pink-300: #fbb6ce;
+      --colors-pink-400: #f687b3;
+      --colors-pink-500: #ed64a6;
+      --colors-pink-600: #d53f8c;
+      --colors-pink-700: #b83280;
+      --colors-pink-800: #97266d;
+      --colors-pink-900: #702459;
+
+      /* Opacity */
+      --opacity-low: 0.1;
+      --opacity-md: 0.5;
+      --opacity-high: 0.9;
+
+      /* Font Families */
+      --fontFamilies-heading: 'Inter', sans-serif;
+      --fontFamilies-body: 'Roboto', sans-serif;
+
+      /* Line Heights */
+      --lineHeights-heading: 1.1;
+      --lineHeights-body: 1.4;
+
+      /* Letter Spacing */
+      --letterSpacing-default: 0;
+      --letterSpacing-increased: 0.15em;
+      --letterSpacing-decreased: -0.05em;
+
+      /* Font Weights */
+      --fontWeights-headingRegular: 400;
+      --fontWeights-headingBold: 700;
+      --fontWeights-bodyRegular: 400;
+      --fontWeights-bodyBold: 700;
+
+      /* Font Sizes (body=16, scale 1.25) */
+      --fontSizes-body: 16px;
+      --fontSizes-sm: 14px;
+      --fontSizes-xs: 10px;
+      --fontSizes-h6: 16px;
+      --fontSizes-h5: 20px;
+      --fontSizes-h4: 25px;
+      --fontSizes-h3: 31px;
+      --fontSizes-h2: 39px;
+      --fontSizes-h1: 49px;
+
+      /* Paragraph Spacing */
+      --paragraphSpacing-h1: 32px;
+      --paragraphSpacing-h2: 26px;
+    }
+
+    /* ─── Base Styles ─── */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--fontFamilies-body);
+      font-size: var(--fontSizes-body);
+      line-height: var(--lineHeights-body);
+      background: var(--colors-gray-900);
+      color: var(--colors-gray-100);
+      padding: var(--spacing-lg);
+    }
+
+    h1 {
+      font-family: var(--fontFamilies-heading);
+      font-size: var(--fontSizes-h3);
+      font-weight: var(--fontWeights-headingBold);
+      line-height: var(--lineHeights-heading);
+      color: var(--colors-white);
+      margin-bottom: var(--spacing-sm);
+    }
+    h2 {
+      font-family: var(--fontFamilies-heading);
+      font-size: var(--fontSizes-h5);
+      font-weight: var(--fontWeights-headingRegular);
+      line-height: var(--lineHeights-heading);
+      color: var(--colors-gray-300);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* ─── Layout ─── */
+    .page { max-width: 1100px; margin: 0 auto; }
+
+    .header {
+      display: flex;
+      align-items: baseline;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-lg);
+    }
+    .badge {
+      font-size: var(--fontSizes-sm);
+      font-weight: var(--fontWeights-bodyBold);
+      background: var(--colors-teal-700);
+      color: var(--colors-teal-100);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--borderRadius-sm);
+    }
+    .summary {
+      display: flex;
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-md);
+      font-size: var(--fontSizes-sm);
+      color: var(--colors-gray-400);
+    }
+    .summary strong { color: var(--colors-white); font-weight: var(--fontWeights-bodyBold); }
+    .summary .delta { color: var(--colors-green-400); font-weight: var(--fontWeights-bodyBold); }
+
+    /* ─── Waterfall Chart ─── */
+    .chart-container {
+      background: var(--colors-gray-800);
+      border-radius: var(--borderRadius-lg);
+      padding: var(--spacing-lg);
+    }
+    .chart-segments {
+      display: flex;
+      width: 100%;
+      margin-bottom: var(--spacing-xs);
+      border-bottom: 1px solid var(--colors-gray-700);
+      padding-bottom: var(--spacing-sm);
+    }
+    .chart-segments span {
+      font-family: var(--fontFamilies-heading);
+      font-size: var(--fontSizes-sm);
+      font-weight: var(--fontWeights-headingBold);
+      color: var(--colors-gray-300);
+      text-align: center;
+    }
+    .seg-base { flex: 1; }
+    .seg-instore { flex: 5; border-left: 1px solid var(--colors-gray-700); border-right: 1px solid var(--colors-gray-700); }
+    .seg-activation { flex: 3; }
+    .seg-final { width: 60px; border-left: 1px solid var(--colors-gray-700); }
+
+    .chart-area {
+      display: flex;
+      align-items: flex-end;
+      height: 300px;
+      position: relative;
+      padding-bottom: var(--spacing-lg);
+    }
+    .chart-area::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px, transparent 49px,
+        var(--colors-gray-700) 49px, var(--colors-gray-700) 50px
+      );
+      opacity: var(--opacity-low);
+      pointer-events: none;
+    }
+
+    .bar-group { display: flex; align-items: flex-end; gap: var(--spacing-xs); height: 100%; }
+    .bar-group--base { flex: 1; justify-content: center; }
+    .bar-group--instore { flex: 5; justify-content: space-evenly; padding: 0 var(--spacing-sm); }
+    .bar-group--activation { flex: 3; justify-content: space-evenly; padding: 0 var(--spacing-sm); }
+    .bar-group--final { width: 60px; justify-content: center; }
+
+    .bar-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--spacing-xs);
+      height: 100%;
+      justify-content: flex-end;
+      flex: 1;
+      max-width: 48px;
+    }
+    .bar-value {
+      font-size: var(--fontSizes-xs);
+      font-weight: var(--fontWeights-bodyBold);
+      white-space: nowrap;
+    }
+    .bar-value--positive { color: var(--colors-green-400); }
+    .bar-value--negative { color: var(--colors-red-400); }
+    .bar-value--neutral { color: var(--colors-gray-400); }
+
+    .bar {
+      width: 100%;
+      border-radius: var(--borderRadius-sm) var(--borderRadius-sm) 0 0;
+      min-height: 4px;
+    }
+    .bar--baseline { background: var(--colors-gray-600); }
+    .bar--positive { background: var(--colors-green-500); }
+    .bar--negative { background: var(--colors-red-500); }
+    .bar--final { background: var(--colors-teal-500); }
+
+    /* X-Axis */
+    .x-axis {
+      display: flex;
+      padding-top: var(--spacing-sm);
+      border-top: 1px solid var(--colors-gray-700);
+    }
+    .x-axis-group { display: flex; }
+    .x-axis-group--base { flex: 1; justify-content: center; }
+    .x-axis-group--instore { flex: 5; justify-content: space-evenly; }
+    .x-axis-group--activation { flex: 3; justify-content: space-evenly; }
+    .x-axis-group--final { width: 60px; justify-content: center; }
+    .x-label {
+      font-size: var(--fontSizes-xs);
+      color: var(--colors-gray-500);
+      text-align: center;
+      flex: 1;
+      max-width: 48px;
+      line-height: 1.3;
+    }
+
+    /* ─── Token Reference Panel ─── */
+    .token-ref {
+      margin-top: var(--spacing-xl);
+      padding: var(--spacing-md);
+      background: var(--colors-gray-800);
+      border-radius: var(--borderRadius-lg);
+      border: 1px solid var(--colors-gray-700);
+    }
+    .token-ref h3 {
+      font-family: var(--fontFamilies-heading);
+      font-size: var(--fontSizes-h6);
+      font-weight: var(--fontWeights-headingBold);
+      color: var(--colors-gray-200);
+      margin-bottom: var(--spacing-sm);
+    }
+    .token-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: var(--spacing-sm);
+    }
+    .token-swatch {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-xs);
+      border-radius: var(--borderRadius-sm);
+      background: var(--colors-gray-900);
+    }
+    .token-swatch__color {
+      width: var(--spacing-lg);
+      height: var(--spacing-lg);
+      border-radius: var(--borderRadius-sm);
+      flex-shrink: 0;
+    }
+    .token-swatch__label {
+      font-size: var(--fontSizes-xs);
+      color: var(--colors-gray-400);
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- Header -->
+    <div class="header">
+      <h1>All Drivers</h1>
+      <span class="badge">7 Brand</span>
+    </div>
+
+    <div class="summary">
+      <span>Total Sell-out Volume: <strong>2.69 MUC</strong></span>
+      <span class="delta">+5.2% vs. Prior Year</span>
+    </div>
+
+    <h2>Waterfall Breakdown</h2>
+
+    <!-- Chart -->
+    <div class="chart-container">
+      <div class="chart-segments">
+        <span class="seg-base">Base</span>
+        <span class="seg-instore">In Store</span>
+        <span class="seg-activation">Activation</span>
+        <span class="seg-final">Total</span>
+      </div>
+
+      <div class="chart-area">
+        <div class="bar-group bar-group--base">
+          <div class="bar-wrapper">
+            <span class="bar-value bar-value--neutral">0.80</span>
+            <div class="bar bar--baseline" style="height:30%"></div>
+          </div>
+        </div>
+
+        <div class="bar-group bar-group--instore">
+          <div class="bar-wrapper">
+            <span class="bar-value bar-value--positive">+0.12</span>
+            <div class="bar bar--positive" style="height:5%"></div>
+          </div>
+          <div class="bar-wrapper">
+            <span class="bar-value bar-value--negative">-0.15</span>
+            <div class="bar bar--negative" style="height:6%"></div>
+          </div>
+          <div class="bar-wrapper">
+            <span class="bar-value bar-value--positive">+0.08</span>
+            <div class="bar bar--positive" style="height:3%"></div>
+          </div>
+          <div class="bar-wrapper">
+            <span class="bar-value bar-value--negative">-0.06</span>
+            <div class="bar bar--negative" style="height:2.5%"></div>
+          </div>
+          <div class="bar-wrapper">
+            <span class="bar-value bar-value--negative">-0.10</span>
+            <div class="bar bar--negative" style="height:4%"></div>
+          </div>
+        </div>
+
+        <div class="bar-group bar-group--activation">
+          <div class="bar-wrapper">
+            <span class="bar-value bar-value--positive">+0.55</span>
+            <div class="bar bar--positive" style="height:20%"></div>
+          </div>
+          <div class="bar-wrapper">
+            <span class="bar-value bar-value--positive">+0.70</span>
+            <div class="bar bar--positive" style="height:26%"></div>
+          </div>
+          <div class="bar-wrapper">
+            <span class="bar-value bar-value--positive">+0.85</span>
+            <div class="bar bar--positive" style="height:32%"></div>
+          </div>
+        </div>
+
+        <div class="bar-group bar-group--final">
+          <div class="bar-wrapper">
+            <span class="bar-value bar-value--neutral">2.69</span>
+            <div class="bar bar--final" style="height:95%"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="x-axis">
+        <div class="x-axis-group x-axis-group--base">
+          <span class="x-label">Constant Sales</span>
+        </div>
+        <div class="x-axis-group x-axis-group--instore">
+          <span class="x-label">Weather</span>
+          <span class="x-label">Macro</span>
+          <span class="x-label">Holidays</span>
+          <span class="x-label">Comp. Media</span>
+          <span class="x-label">Pricing</span>
+        </div>
+        <div class="x-axis-group x-axis-group--activation">
+          <span class="x-label">Customer</span>
+          <span class="x-label">Consumer (Paid)</span>
+          <span class="x-label">Consumer (Owned)</span>
+        </div>
+        <div class="x-axis-group x-axis-group--final">
+          <span class="x-label">2025</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Token Reference Panel -->
+    <div class="token-ref">
+      <h3>Applied Tokens</h3>
+      <div class="token-grid">
+        <div class="token-swatch"><div class="token-swatch__color" style="background:var(--colors-gray-900)"></div><span class="token-swatch__label">colors.gray.900</span></div>
+        <div class="token-swatch"><div class="token-swatch__color" style="background:var(--colors-gray-800)"></div><span class="token-swatch__label">colors.gray.800</span></div>
+        <div class="token-swatch"><div class="token-swatch__color" style="background:var(--colors-gray-600)"></div><span class="token-swatch__label">colors.gray.600 (baseline)</span></div>
+        <div class="token-swatch"><div class="token-swatch__color" style="background:var(--colors-green-500)"></div><span class="token-swatch__label">colors.green.500 (+)</span></div>
+        <div class="token-swatch"><div class="token-swatch__color" style="background:var(--colors-red-500)"></div><span class="token-swatch__label">colors.red.500 (-)</span></div>
+        <div class="token-swatch"><div class="token-swatch__color" style="background:var(--colors-teal-500)"></div><span class="token-swatch__label">colors.teal.500 (total)</span></div>
+        <div class="token-swatch"><div class="token-swatch__color" style="background:var(--colors-green-400)"></div><span class="token-swatch__label">colors.green.400 (label+)</span></div>
+        <div class="token-swatch"><div class="token-swatch__color" style="background:var(--colors-red-400)"></div><span class="token-swatch__label">colors.red.400 (label-)</span></div>
+      </div>
+
+      <h3 style="margin-top:var(--spacing-md)">Spacing Scale (dimension * 2)</h3>
+      <div style="display:flex;gap:var(--spacing-sm);align-items:flex-end;margin-top:var(--spacing-sm)">
+        <div style="width:var(--spacing-xs);height:var(--spacing-xs);background:var(--colors-teal-400);border-radius:2px" title="xs: 4px"></div>
+        <div style="width:var(--spacing-sm);height:var(--spacing-sm);background:var(--colors-teal-400);border-radius:2px" title="sm: 8px"></div>
+        <div style="width:var(--spacing-md);height:var(--spacing-md);background:var(--colors-teal-400);border-radius:2px" title="md: 16px"></div>
+        <div style="width:var(--spacing-lg);height:var(--spacing-lg);background:var(--colors-teal-400);border-radius:2px" title="lg: 32px"></div>
+        <div style="width:var(--spacing-xl);height:var(--spacing-xl);background:var(--colors-teal-400);border-radius:2px" title="xl: 64px"></div>
+        <span style="font-size:var(--fontSizes-xs);color:var(--colors-gray-500);margin-left:var(--spacing-sm)">xs(4) → sm(8) → md(16) → lg(32) → xl(64)</span>
+      </div>
+
+      <h3 style="margin-top:var(--spacing-md)">Typography (Inter + Roboto, scale 1.25)</h3>
+      <div style="margin-top:var(--spacing-sm);display:flex;flex-direction:column;gap:var(--spacing-xs)">
+        <span style="font-family:var(--fontFamilies-heading);font-size:var(--fontSizes-h1);font-weight:var(--fontWeights-headingBold);color:var(--colors-white);line-height:var(--lineHeights-heading)">H1 — 49px</span>
+        <span style="font-family:var(--fontFamilies-heading);font-size:var(--fontSizes-h3);font-weight:var(--fontWeights-headingBold);color:var(--colors-gray-200);line-height:var(--lineHeights-heading)">H3 — 31px</span>
+        <span style="font-family:var(--fontFamilies-heading);font-size:var(--fontSizes-h5);color:var(--colors-gray-300);line-height:var(--lineHeights-heading)">H5 — 20px</span>
+        <span style="font-family:var(--fontFamilies-body);font-size:var(--fontSizes-body);color:var(--colors-gray-100);line-height:var(--lineHeights-body)">Body — 16px Roboto</span>
+        <span style="font-family:var(--fontFamilies-body);font-size:var(--fontSizes-sm);color:var(--colors-gray-400);line-height:var(--lineHeights-body)">Small — 14px</span>
+        <span style="font-family:var(--fontFamilies-body);font-size:var(--fontSizes-xs);color:var(--colors-gray-500);line-height:var(--lineHeights-body)">XS — 10px</span>
+      </div>
+
+      <h3 style="margin-top:var(--spacing-md)">Border Radius</h3>
+      <div style="display:flex;gap:var(--spacing-md);align-items:center;margin-top:var(--spacing-sm)">
+        <div style="width:48px;height:48px;background:var(--colors-indigo-500);border-radius:var(--borderRadius-sm)"></div>
+        <span style="font-size:var(--fontSizes-xs);color:var(--colors-gray-500)">sm: 4px</span>
+        <div style="width:48px;height:48px;background:var(--colors-indigo-500);border-radius:var(--borderRadius-lg)"></div>
+        <span style="font-size:var(--fontSizes-xs);color:var(--colors-gray-500)">lg: 8px</span>
+        <div style="width:48px;height:48px;background:var(--colors-indigo-500);border-radius:var(--borderRadius-xl)"></div>
+        <span style="font-size:var(--fontSizes-xs);color:var(--colors-gray-500)">xl: 16px</span>
+        <div style="width:48px;height:48px;background:var(--colors-indigo-500);border-radius:var(--borderRadius-multi-value)"></div>
+        <span style="font-size:var(--fontSizes-xs);color:var(--colors-gray-500)">multi: 4px 8px</span>
+      </div>
+
+      <h3 style="margin-top:var(--spacing-md)">Opacity</h3>
+      <div style="display:flex;gap:var(--spacing-md);align-items:center;margin-top:var(--spacing-sm)">
+        <div style="width:48px;height:48px;background:var(--colors-teal-500);opacity:var(--opacity-low)"></div>
+        <span style="font-size:var(--fontSizes-xs);color:var(--colors-gray-500)">low: 10%</span>
+        <div style="width:48px;height:48px;background:var(--colors-teal-500);opacity:var(--opacity-md)"></div>
+        <span style="font-size:var(--fontSizes-xs);color:var(--colors-gray-500)">md: 50%</span>
+        <div style="width:48px;height:48px;background:var(--colors-teal-500);opacity:var(--opacity-high)"></div>
+        <span style="font-size:var(--fontSizes-xs);color:var(--colors-gray-500)">high: 90%</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

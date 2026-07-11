@@ -1,3 +1,6 @@
+import { useState } from "react";
+import TableSettingsDrawer from "./TableSettingsDrawer";
+
 const rowLabels = ["Customer", "Consumer (Paid)", "Consumer (Owned)"];
 
 const columnHeaders = [
@@ -14,7 +17,10 @@ const columnHeaders = [
 ];
 
 export default function GlobalEditView() {
+  const [settingsOpen, setSettingsOpen] = useState(false);
+
   return (
+    <>
     <div className="flex flex-col flex-1 h-full w-full min-h-0 overflow-hidden gap-[8px] rounded-t-[16px] bg-table-surface px-[48px] py-[32px]">
       {/* Context Header Row */}
       <div className="flex items-center justify-between w-full shrink-0">
@@ -40,7 +46,7 @@ export default function GlobalEditView() {
             </svg>
             <span className="text-[12px] text-text-caption">View-only</span>
           </div>
-          <button className="flex items-center gap-[8px] h-[36px] px-[12px] rounded-[8px] bg-input-bg border border-input-border text-[14px] text-text-header">
+          <button onClick={() => setSettingsOpen(true)} className="flex items-center gap-[8px] h-[36px] px-[12px] rounded-[8px] bg-input-bg border border-input-border text-[14px] text-text-header">
             <svg className="size-[13px] text-text-header" viewBox="0 0 16 16" fill="currentColor">
               <path d="M8 0a1 1 0 011 1v1.07a5.97 5.97 0 012.18.9l.76-.75a1 1 0 011.41 1.41l-.75.76c.44.66.75 1.4.9 2.18H14.6a1 1 0 110 2H13.5a5.97 5.97 0 01-.9 2.18l.75.76a1 1 0 01-1.41 1.41l-.76-.75a5.97 5.97 0 01-2.18.9V14.6a1 1 0 11-2 0V13.5a5.97 5.97 0 01-2.18-.9l-.76.75a1 1 0 01-1.41-1.41l.75-.76A5.97 5.97 0 012.5 9H1.4a1 1 0 110-2H2.5a5.97 5.97 0 01.9-2.18l-.75-.76a1 1 0 011.41-1.41l.76.75A5.97 5.97 0 017 2.5V1.4A1 1 0 018 0zm0 5a3 3 0 100 6 3 3 0 000-6z" />
             </svg>
@@ -173,5 +179,15 @@ export default function GlobalEditView() {
         </div>
       </div>
     </div>
+
+    <TableSettingsDrawer
+      open={settingsOpen}
+      onClose={() => setSettingsOpen(false)}
+      onApply={(s) => {
+        console.log("Table Settings applied:", s);
+        setSettingsOpen(false);
+      }}
+    />
+    </>
   );
 }

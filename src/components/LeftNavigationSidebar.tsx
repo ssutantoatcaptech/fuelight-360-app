@@ -12,9 +12,11 @@ const recentScenarios = [
 interface SidebarProps {
   collapsed: boolean;
   onToggleCollapse: () => void;
+  activePage?: "launchpad" | "scenario";
+  onNavigate?: (page: "launchpad" | "scenario") => void;
 }
 
-export default function LeftNavigationSidebar({ collapsed, onToggleCollapse }: SidebarProps) {
+export default function LeftNavigationSidebar({ collapsed, onToggleCollapse, activePage = "launchpad", onNavigate }: SidebarProps) {
   const [selectedScenario, setSelectedScenario] = useState(0);
   const { theme: themeMode, setTheme: setThemeMode } = useTheme();
 
@@ -53,7 +55,7 @@ export default function LeftNavigationSidebar({ collapsed, onToggleCollapse }: S
         <div className={`flex flex-1 min-h-0 flex-col gap-[16px] items-center w-full ${collapsed ? "px-[8px]" : "px-[16px]"}`}>
           {/* Top menu */}
           <div className="flex flex-col gap-[8px] items-center w-full pb-[16px] border-b border-sidebar-border">
-            <SidebarItem label="Launchpad" icon="plus" collapsed={collapsed} />
+            <SidebarItem label="Launchpad" icon="plus" collapsed={collapsed} active={activePage === "launchpad"} onClick={() => onNavigate?.("launchpad")} />
             <SidebarItem label="My Scenarios" icon="folder" collapsed={collapsed} />
           </div>
 
@@ -62,22 +64,25 @@ export default function LeftNavigationSidebar({ collapsed, onToggleCollapse }: S
             {recentScenarios.map((s, i) => (
               <button
                 key={i}
-                onClick={() => setSelectedScenario(i)}
+                onClick={() => { setSelectedScenario(i); onNavigate?.("scenario"); }}
                 className={`flex h-[40px] w-full items-center rounded-[8px] relative ${
                   collapsed ? "justify-center px-[8px]" : "gap-[8px] px-[8px]"
                 } ${
-                  selectedScenario === i
+                  activePage === "scenario" && selectedScenario === i
                     ? "bg-sidebar-item-selected"
                     : "bg-sidebar-bg hover:bg-sidebar-item-selected/30"
                 }`}
               >
                 {/* Icon */}
                 <div className="flex items-center justify-center size-[24px] shrink-0 relative">
-                  {s.icon === "spinner" ? (
-                    <Icon name="loader" size={16} className={`animate-spin ${selectedScenario === i ? "text-white" : "text-sidebar-icon"}`} />
-                  ) : (
-                    <Icon name="scenario" size={19.5} className={selectedScenario === i ? "text-white" : "text-sidebar-icon"} />
-                  )}
+                  {(() => {
+                    const isActive = activePage === "scenario" && selectedScenario === i;
+                    return s.icon === "spinner" ? (
+                      <Icon name="loader" size={16} className={`animate-spin ${isActive ? "text-white" : "text-sidebar-icon"}`} />
+                    ) : (
+                      <Icon name="scenario" size={19.5} className={isActive ? "text-white" : "text-sidebar-icon"} />
+                    );
+                  })()}
                   {s.hasNotification && (
                     <div className="absolute top-[-2px] right-[-2px] size-[8px] rounded-[4px] bg-brand-primary" />
                   )}
@@ -85,7 +90,7 @@ export default function LeftNavigationSidebar({ collapsed, onToggleCollapse }: S
                 {/* Label */}
                 {!collapsed && (
                   <span className={`flex-1 min-w-0 text-[14px] leading-[1.4] truncate ${
-                    selectedScenario === i ? "text-sidebar-text-selected" : "text-sidebar-text"
+                    activePage === "scenario" && selectedScenario === i ? "text-sidebar-text-selected" : "text-sidebar-text"
                   }`}>
                     {s.label}
                   </span>
@@ -163,14 +168,18 @@ export default function LeftNavigationSidebar({ collapsed, onToggleCollapse }: S
   );
 }
 
-function SidebarItem({ label, icon, badge, collapsed }: { label: string; icon?: string; badge?: string; collapsed?: boolean }) {
+function SidebarItem({ label, icon, badge, collapsed, active = false, onClick }: { label: string; icon?: string; badge?: string; collapsed?: boolean; active?: boolean; onClick?: () => void }) {
   return (
-    <div className={`flex h-[40px] w-full items-center rounded-[8px] bg-sidebar-bg ${
-      collapsed ? "justify-center px-[8px]" : "gap-[8px] px-[8px]"
-    }`}>
+    <button
+      type="button"
+      onClick={onClick}
+      className={`flex h-[40px] w-full items-center rounded-[8px] ${
+        active ? "bg-sidebar-item-selected" : "bg-sidebar-bg hover:bg-sidebar-item-selected/30"
+      } ${collapsed ? "justify-center px-[8px]" : "gap-[8px] px-[8px]"}`}
+    >
       <div className="flex items-center justify-center size-[24px] shrink-0">
         {icon ? (
-          <Icon name={icon} size={19.5} className="text-sidebar-icon" />
+          <Icon name={icon} size={19.5} className={active ? "text-white" : "text-sidebar-icon"} />
         ) : (
           <svg className="size-[19.5px] text-sidebar-icon" viewBox="0 0 20 20" fill="currentColor">
             <rect x="3" y="3" width="14" height="14" rx="2" opacity="0.6" />
@@ -179,7 +188,7 @@ function SidebarItem({ label, icon, badge, collapsed }: { label: string; icon?: 
       </div>
       {!collapsed && (
         <>
-          <span className="flex-1 min-w-0 text-[14px] leading-[1.4] text-sidebar-text truncate">
+          <span className={`flex-1 min-w-0 text-[14px] leading-[1.4] truncate text-left ${active ? "text-sidebar-text-selected" : "text-sidebar-text"}`}>
             {label}
           </span>
           {badge && (
@@ -191,7 +200,7 @@ function SidebarItem({ label, icon, badge, collapsed }: { label: string; icon?: 
           )}
         </>
       )}
-    </div>
+    </button>
   );
 }
 
