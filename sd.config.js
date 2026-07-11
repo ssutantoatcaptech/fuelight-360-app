@@ -9,7 +9,7 @@ export default {
       buildPath: 'src/design-system/styles/',
       files: [
         {
-          destination: 'tokens.css',
+          destination: 'sd-output.css',
           format: formats.cssVariables, // Outputs native :root definitions
           options: {
             outputReferences: true, // Retains pointer mappings without flattening

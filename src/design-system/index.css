@@ -1,3 +1,6 @@
 /* Fuelight Design System — consolidated entry point */
-@import './styles/tokens.css';
+@import './styles/primitives.css';
+@import './styles/light.css';
+@import './styles/dark.css';
+@import './styles/aliases.css';
 @import './components/index.css';

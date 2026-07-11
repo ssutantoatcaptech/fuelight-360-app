@@ -35,7 +35,7 @@ Each card: `rounded-[16px] bg-container-sunken4`, `px-32 py-32`, column layout,
 
 ## Token alignment with base.css
 
-The Figma variables map 1:1 onto `project/tokens/base.css`. In code we use the
+The Figma variables map 1:1 onto `src/design-system/styles/ (generated token layers)`. In code we use the
 **Tailwind-registered aliases** from `src/index.css` (what Tailwind v4 actually
 compiles), which resolve to the same values. Both columns are listed so the mapping
 is auditable end-to-end.

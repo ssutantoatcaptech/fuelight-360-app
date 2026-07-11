@@ -1,0 +1,93 @@
+/*
+ * Fuelight-360 Token Bridge — Side Panel (Dark UI)
+ *
+ * This file maps Fuelight-360's semantic token names to the values used by
+ * the side panel's dark theme. It serves as the single point of control for
+ * theming without touching the inline Tailwind utilities or JS logic.
+ *
+ * The page's :root vars (--card, --background, etc.) are consumed directly
+ * by Tailwind utilities. This file provides the --color-* aliases so
+ * inline styles can reference Fuelight-360 tokens.
+ */
+
+:root {
+  /* === Surfaces === */
+  --color-bg-page: oklch(14.5% 0 0);
+  --color-bg-card: oklch(20.5% 0 0);
+  --color-sidebar-bg: oklch(14.5% 0 0);
+  --color-chart-bg: oklch(17.5% 0 0);
+  --color-table-surface: oklch(23.5% .003 280);
+  --color-table-header-raised: #141E1E;
+  --color-table-header-raised-highest: #1E2727;
+  --color-container-sunken2: oklch(25% .005 60);
+  --color-modal-bg: rgba(0, 0, 0, .55);
+
+  /* === Text === */
+  --color-text-body: oklch(97% .005 80);
+  --color-text-header: #e6e6e9;
+  --color-text-caption: #8b8b91;
+  --color-text-disabled: #6b6b70;
+  --color-text-contrast: #ffffff;
+
+  /* === Borders === */
+  --color-border-default: oklch(28% .005 60);
+  --color-border-normal: oklch(45% .007 60);
+  --color-border-strong: oklch(45% .007 60);
+  --color-border-subtle: #2a2a2e;
+  --color-border-weak: #2a2a2e;
+  --color-table-border: #2e2e32;
+  --color-input-border: oklch(92.9% .013 255.508);
+
+  /* === Brand === */
+  --color-brand-primary: #5fc4d8;
+  --color-brand-primary-dim: #1a8a9b;
+  --color-brand-primary-dim-low: #206C7F;
+
+  /* === Status === */
+  --color-error: #dc4a4a;
+  --color-success: #4fd1a0;
+  --color-warning: #f5a623;
+
+  /* === Buttons === */
+  --color-button-primary-bg: oklch(20.8% .042 265.755);
+  --color-button-secondary-bg: oklch(96.8% .007 247.896);
+
+  /* === Sidebar === */
+  --color-sidebar-selected-bg: rgba(26, 138, 155, .12);
+  --color-sidebar-text: oklch(97% .005 80);
+  --color-sidebar-text-selected: #5fc4d8;
+  --color-sidebar-border: oklch(28% .005 60);
+
+  /* === Typography === */
+  --font-body: Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-size-xs: 10px;
+  --font-size-caption: 11px;
+  --font-size-sm: 12px;
+  --font-size-base: 13px;
+  --font-size-md: 14px;
+  --font-size-title: 20px;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* === Spacing === */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+
+  /* === Radius === */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 16px;
+
+  /* === Transitions === */
+  --duration-fast: 100ms;
+  --duration-normal: 150ms;
+  --duration-medium: 200ms;
+  --duration-slow: 300ms;
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+}

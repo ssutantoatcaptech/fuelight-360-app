@@ -70,7 +70,7 @@ export default function LeftNavigationSidebar({ collapsed, onToggleCollapse, act
                 } ${
                   activePage === "scenario" && selectedScenario === i
                     ? "bg-sidebar-item-selected"
-                    : "bg-sidebar-bg hover:bg-sidebar-item-selected/30"
+                    : "bg-sidebar-bg hover:bg-sidebar-hover-bg"
                 }`}
               >
                 {/* Icon */}
@@ -174,7 +174,7 @@ function SidebarItem({ label, icon, badge, collapsed, active = false, onClick }:
       type="button"
       onClick={onClick}
       className={`flex h-[40px] w-full items-center rounded-[8px] ${
-        active ? "bg-sidebar-item-selected" : "bg-sidebar-bg hover:bg-sidebar-item-selected/30"
+        active ? "bg-sidebar-item-selected" : "bg-sidebar-bg hover:bg-sidebar-hover-bg"
       } ${collapsed ? "justify-center px-[8px]" : "gap-[8px] px-[8px]"}`}
     >
       <div className="flex items-center justify-center size-[24px] shrink-0">

@@ -119,7 +119,7 @@ function LaunchpadCard({
   onLaunch?: (title: string) => void;
 }) {
   return (
-    <div className="flex min-w-px flex-1 max-w-[368px] flex-col items-center justify-between gap-[16px] rounded-[16px] bg-container-sunken4 px-[32px] py-[32px]">
+    <div className="flex min-w-px flex-1 max-w-[368px] flex-col items-center justify-between gap-[16px] rounded-[16px] bg-container-flat px-[32px] py-[32px]">
       <div className="flex w-full flex-col items-center gap-[16px]">
         <Icon name={card.icon} size={40} gradientId="tccc-rainbow-angled" />
         <div className="flex w-full flex-col items-center gap-[8px] text-center">

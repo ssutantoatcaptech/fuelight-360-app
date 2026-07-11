@@ -35,7 +35,7 @@ export default function App() {
       </aside>
 
       {/* Main content workspace */}
-      <main className="flex flex-1 flex-col items-center min-w-0 mt-0 pt-0 pr-[16px]">
+      <main className="flex flex-1 flex-col items-center min-w-0">
         {page === "launchpad" ? (
           <div className="flex w-full flex-1 flex-col overflow-y-auto rounded-none bg-container-sunken6">
             <div className="flex w-full flex-1 flex-col items-center px-[64px] py-[68px]">
